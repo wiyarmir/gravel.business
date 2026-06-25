@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" encoding="utf-8">
+  <head>
+    <style>
+      html {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url(business.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+    <script type="text/javascript">
+      window.onload = function (argument) {
+        var text =
+          "business,gravel,buisnus,business,gravel,business,gravel,haha business,all-hands,of course this code is not mine,this was all copypasted from codepen,regular sized stones for decorative usage,uber for stoats,regular sized outages for production usage,like pen pals but incredibly dysfunctional ones,As seen on Love Your Garden with Alan Titchmarsh,Electric - 10 Minute Countdown,Gurl now im a mood for some high feasant,Snakes are physically manifesting in my home,isn't sand just worn out gravel?,wow that’s a classic bananana";
+        var words = string_handle(text);
+
+        var canvas = document.getElementById("c");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        if (canvas.getContext) {
+          var context = canvas.getContext("2d"),
+            w = canvas.width,
+            h = canvas.height;
+
+          context.fillStyle = "white";
+
+          Word = function (key) {
+            return {
+              text: key.text,
+              x: Math.random() * w,
+              y: Math.random() * h,
+              font: key.size * 10 + "px arial",
+              speed: key.size * (0.5 * Math.random() + 0.1),
+            };
+          };
+          var words_attr = words.map(function (item) {
+            return Word(item);
+          });
+
+          let animation = function animation() {
+            context.clearRect(0, 0, w, h);
+            move();
+            for (var i = 0; i < words_attr.length; i++) {
+              context.font = words_attr[i].font;
+              context.fillText(
+                words_attr[i].text,
+                words_attr[i].x,
+                words_attr[i].y
+              );
+              words_attr[i].width = context.measureText(
+                words_attr[i].text
+              ).width;
+            }
+            requestAnimationFrame(animation);
+          };
+
+          function move() {
+            for (var i = 0; i < words_attr.length; i++) {
+              if (words_attr[i].x + words_attr[i].width < 0) {
+                words_attr[i].x = w;
+                words_attr[i].y = Math.random() * h;
+              } else {
+                words_attr[i].x -= words_attr[i].speed;
+              }
+            }
+          }
+
+          requestAnimationFrame(animation);
+        }
+
+        function string_handle(str) {
+          var split_str = str.split(",");
+          var words = split_str.map(function (item) {
+            return { text: item, size: 1 + Math.random() * 10 };
+          });
+          console.log(words);
+          return words;
+        }
+      };
+    </script>
+  </body>
+</html>
