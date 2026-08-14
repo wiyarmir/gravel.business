@@ -35,17 +35,22 @@
 
           context.fillStyle = "white";
 
-          Word = function (key) {
+          // words are seeded across SPREAD screen widths so only a fraction
+          // are on screen at a time, and recycled off the right edge the same way
+          var SPREAD = 3;
+
+          Word = function (key, index, total) {
+            var lane = (index + Math.random()) / total;
             return {
               text: key.text,
-              x: Math.random() * w,
+              x: lane * SPREAD * w,
               y: Math.random() * h,
               font: key.size * 10 + "px arial",
               speed: key.size * (0.5 * Math.random() + 0.1),
             };
           };
-          var words_attr = words.map(function (item) {
-            return Word(item);
+          var words_attr = words.map(function (item, index) {
+            return Word(item, index, words.length);
           });
 
           let animation = function animation() {
@@ -68,7 +73,7 @@
           function move() {
             for (var i = 0; i < words_attr.length; i++) {
               if (words_attr[i].x + words_attr[i].width < 0) {
-                words_attr[i].x = w;
+                words_attr[i].x = w + (SPREAD - 1) * w * (0.5 + Math.random());
                 words_attr[i].y = Math.random() * h;
               } else {
                 words_attr[i].x -= words_attr[i].speed;
