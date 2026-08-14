@@ -21,7 +21,7 @@
     <script type="text/javascript">
       window.onload = function (argument) {
         var text =
-          "business,gravel,buisnus,business,gravel,business,gravel,haha business,all-hands,of course this code is not mine,this was all copypasted from codepen,regular sized stones for decorative usage,uber for stoats,regular sized outages for production usage,like pen pals but incredibly dysfunctional ones,As seen on Love Your Garden with Alan Titchmarsh,Electric - 10 Minute Countdown,Gurl now im a mood for some high feasant,Snakes are physically manifesting in my home,isn't sand just worn out gravel?,wow that’s a classic bananana";
+          "business|gravel|buisnus|business|gravel|business|gravel|haha business|all-hands|of course this code is not mine|this was all copypasted from codepen|regular sized stones for decorative usage|uber for stoats|regular sized outages for production usage|like pen pals but incredibly dysfunctional ones|As seen on Love Your Garden with Alan Titchmarsh|Electric - 10 Minute Countdown|Gurl now im a mood for some high feasant|Snakes are physically manifesting in my home|isn't sand just worn out gravel?|wow that’s a classic bananana|Paul, that’s a flat fuck|Welcome to Sponge City|this is about hating your landlord and the shape of buttons in Meet and iCloud|(or woman lol)|booze and/or pills|they can make you look at computer but they can't make you work|Fuck yeah gravel|i hope my sandwich arrives before this hits london|i know they fought in two world wars but they are extremely vulnerable to misinformation|and then HMRC says \"OK you can do crime now\"|i am functionally no different from a big leaf|i don't need money, I just need other people to get fired|I love coming to #radio-gravel and seeing some sick freaks rocking out|Have you considered buying £25,000 worth of bicycles on a cycle to work scheme?|That sweet Yankee blood is all you need 🦅|I like the bit where they talk about all the different chowders|you'd have salami hands all day, it's win win|snoopy museum kinda fucked ngl|knuckle down or I'll knuckle your fat head|You never feel good while you do cardio, you just feel equally shit but go faster or further|the money was exchanged for scent|\"there's no couch in couch to 5k\"|Coffee machines don’t have clicky birds, but you could argue that’s a flaw of coffee machines|i fear you're in owl territory fellas|Doesn't matter if \"works\" involves a lot of duct tape and inshallah";
         var words = string_handle(text);
 
         var canvas = document.getElementById("c");
@@ -80,7 +80,7 @@
         }
 
         function string_handle(str) {
-          var split_str = str.split(",");
+          var split_str = str.split("|");
           var words = split_str.map(function (item) {
             return { text: item, size: 1 + Math.random() * 10 };
           });
